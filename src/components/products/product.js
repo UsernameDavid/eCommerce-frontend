@@ -22,8 +22,7 @@ export default function Product() {
         action={
           <Typography 
           variant = 'h6'
-          color='textSecondary'
-          >
+          color='textSecondary'>
             {"€50.00"}
           </Typography>
         }
