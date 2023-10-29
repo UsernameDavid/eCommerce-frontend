@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 
 import NavigationContainer from "./navigation/navigation-container"
-import ProductContainer from "./products/product-container";
 import Main from "./pages/main-page";
 import Cart from "./pages/cart-page";
 import NoMatch from "./pages/no-match";
@@ -19,17 +18,16 @@ export default class App extends Component {
   render() {
     return (
       <div className='app'>
-            <Router>
-              <div>
-                <NavigationContainer />
-                <ProductContainer />
-                <Switch>
-                <Route exact path="/" component={Main} />
-                <Route exact path="/cart" component={Cart} />
-                <Route component={NoMatch} />
-                </Switch>
-              </div>
-            </Router>
+        <Router>
+          <div>
+            <NavigationContainer />
+            <Switch>
+            <Route exact path="/" component={Main} />
+            <Route exact path="/cart" component={Cart} />
+            <Route component={NoMatch} />
+            </Switch>
+          </div>
+        </Router>
       </div>
     );
   }
