@@ -13,13 +13,14 @@ import { AddShoppingCart } from '@material-ui/icons';
 export default class ProductItem extends Component {
   constructor(props) {
     super(props);
-    console.log("props coming to ProductItem", props)
+
     this.state = {
       hovered: false,
       texthovered: false,
       price: this.props.price
     };
   }
+
   render() {
     const { category, description, id, image, name, price } = this.props;
     return (
@@ -28,7 +29,7 @@ export default class ProductItem extends Component {
           action={
             <Typography 
             variant = 'h6'
-            color='textSecondary'>
+            style={{ color: '#ff9800' }}>
             {this.props.price}
             </Typography>
           }
@@ -53,7 +54,7 @@ export default class ProductItem extends Component {
           </div>
         </div>
         <CardContent>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" style={{ color: '#ff9800' }}>
           {this.props.name}
           </Typography>
         </CardContent>

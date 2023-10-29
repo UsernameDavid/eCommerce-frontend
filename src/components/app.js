@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,21 +14,9 @@ import NoMatch from "./pages/no-match";
 export default class App extends Component {
   constructor() {
     super();
-   
-  }
-
-  getProducts(){
-    axios.get('http://127.0.0.1:5000/product/get')
-    .then(response => {
-      console.log(response);
-    })
-    .catch(error => {
-      console.log(error);
-    })
   }
 
   render() {
-    this.getProducts();
     return (
       <div className='app'>
             <Router>

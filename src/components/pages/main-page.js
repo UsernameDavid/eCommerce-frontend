@@ -6,12 +6,7 @@ import ProductItem from "../products/product-item";
 export default function() {
   return (
     <div>
-      <div className='products-item-wrapper'>
-              <ProductItem/>
-              <ProductItem/>
-              <ProductItem/>
-              <ProductItem/>
-          </div>
+
     </div>
   )
 }
