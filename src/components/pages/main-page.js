@@ -1,25 +1,17 @@
-// ver vídeo https://basque.devcamp.com/pt-full-stack-development-javascript-python-react/guide/basic-route-setup-react
-import React, { Component } from "react";
-import Product from "../products/product";
+// source https://basque.devcamp.com/pt-full-stack-development-javascript-python-react/guide/basic-route-setup-react
+import React from "react";
 
+import ProductItem from "../products/product-item";
 
-const Main = (props) => {
+export default function() {
   return (
     <div>
       <div className='products-item-wrapper'>
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
+              <ProductItem/>
+              <ProductItem/>
+              <ProductItem/>
+              <ProductItem/>
           </div>
     </div>
   )
-};
-
-export default Main;
+}

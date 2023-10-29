@@ -1,4 +1,20 @@
-.navbar-wrapper {
+.nav-wrapper {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+
+  .left-side {
+    a {
+      margin-left: 15px;
+      cursor: pointer;
+      color: grey;
+      text-decoration: none;
+      transition: 0.5s ease-in-out;
+      font-size: 2rem;
+
+      &:hover {
+        color: black;
+      }
+    }
+  }
 }

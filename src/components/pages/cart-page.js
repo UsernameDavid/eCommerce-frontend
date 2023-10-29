@@ -1,12 +1,10 @@
-// ver vídeo https://basque.devcamp.com/pt-full-stack-development-javascript-python-react/guide/basic-route-setup-react
-import React, { Component } from "react"
+// soruce https://basque.devcamp.com/pt-full-stack-development-javascript-python-react/guide/basic-route-setup-react
+import React from "react"
 
-const Cart = (props) => {
+export default function() {
   return (
     <div>
       <h1>CART-PAGE</h1>
     </div>
   )
-};
-
-export default Cart;
+}
