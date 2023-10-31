@@ -1,22 +1,56 @@
 .products-item-wrapper {
-    margin-top: 2rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 1em;
     justify-items: center;
     align-items: center;
 
-    .MuiCard-root {
-        margin: 10px;
+    .MuiCard-root{
+        display: flex;
+        flex-direction: column;
+        height: 500px;
+        width: 100%;
+        margin: 25px;
+    }
+
+    .MuiCardActions-root {
+        padding: 8px;
+    }
+
+    .card-header {
+        margin: 16px 5px 0px 5px;
+    }
+
+    .card-cart {
+        display: flex;
+        flex-direction: column;
+        height: 400px;
+        width: 100%;
+        margin: 25px;
+    }
+
+    .MuiCard-root:hover {
+        transition: 1s;
+        filter: brightness(50%);
+    }
+
+    //overrides the onhover if we are in the cart section
+    .card-cart:hover {
+        filter: brightness(100%);
+    }
+
+    .MuiCardHeader-action {
+        margin: 0px;
+    }
+
+    .MuiCardHeader-root {
+        margin: 0px;
     }
 
     .MuiCardMedia-root {
-        height: 350px;
+        height: 250px;
         width: 100%;
-    }
-
-    .hovered {
-        transition: 1s;
-        filter: brightness(50%);
+        object-fit: contain;
     }
 
     .text-hovered{
@@ -32,7 +66,6 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
         height: 100%;
         text-align: center;
         color: transparent;
@@ -44,10 +77,32 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100%;
+        width: 100%;
         text-align: center;
+        margin: 0px;
     }
 
+    .card-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0px;
+    }
+
+}
+
+@media only screen and (max-width: 1200px) {
+    .products-item-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+    .products-item-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 @media only screen and (max-width: 800px) {
@@ -56,3 +111,11 @@
         grid-template-columns: 1fr 1fr;
   }
 }
+
+@media only screen and (max-width: 570px) {
+    .products-item-wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+  }
+}
+

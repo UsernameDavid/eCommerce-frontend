@@ -1,0 +1,36 @@
+.nav-wrapper {
+  color: #DA5726;
+  display: flex;
+  text-align: center;
+  align-content: center;
+  justify-content: space-between;
+  padding: 30px;
+  font-family: "Amazon Ember",sans-serif;
+
+  .left-side {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: 400;
+    img {
+      height: 110px;
+    }
+  }
+
+  .right-side {
+    display: flex;
+    align-items: center;
+    a {
+      color: #DA5726;
+      margin-left: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.5s ease-in-out;
+      font-size: 1.6rem;
+
+      &:hover {
+        color: #7f2200;
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@ import axios from "axios";
 
 import ProductItem from "./product-item";
 
-export default class PortfolioContainer extends Component {
+export default class ProductContainer extends Component {
   constructor() {
     super();
 
@@ -14,14 +14,6 @@ export default class PortfolioContainer extends Component {
     };
 
     this.handleFilter = this.handleFilter.bind(this);
-  }
-
-  handleFilter(filter) {
-    if (filter === "CLEAR_FILTERS") {
-      this.getProductItems();
-    } else {
-      this.getProductItems(filter);
-    }
   }
 
   getProductItems(filter = null) {
@@ -55,6 +47,14 @@ export default class PortfolioContainer extends Component {
     this.getProductItems();
   }
 
+  handleFilter(filter) {
+    if (filter === "CLEAR_FILTERS") {
+      this.getProductItems();
+    } else {
+      this.getProductItems(filter);
+    }
+  }
+
   render() {
     if (this.state.isLoading) {
       return <div>Loading...</div>;
@@ -62,7 +62,7 @@ export default class PortfolioContainer extends Component {
 
     return (
       <div>
-        <div className="homepage-wrapper">
+        <div className="filter-links-wrapper">
           <div className="filter-links">
             <button
               className="btn"

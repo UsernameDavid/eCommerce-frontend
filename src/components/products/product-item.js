@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
+import { Grid } from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons';
 
 export default class ProductItem extends Component {
@@ -15,58 +16,67 @@ export default class ProductItem extends Component {
     super(props);
 
     this.state = {
-      hovered: false,
-      texthovered: false,
-      price: this.props.price
+      cardHovered: false
     };
   }
 
   render() {
     const { category, description, id, image, name, price } = this.props;
     return (
-      <Card sx={{ maxWidth: 100 }}>
-        <CardHeader
-          action={
-            <Typography 
-            variant = 'h6'
-            style={{ color: '#ff9800' }}>
-            {this.props.price}
+        <Card className={this.state.cardHovered ? "card-hovered" : "card"}
+        onMouseEnter={() => this.setState({ cardHovered: true })}
+        onMouseLeave={() => this.setState({ cardHovered: false })}>
+          
+          <CardHeader className='card-header'
+            action={
+              <Typography 
+              variant = 'h7'
+              style={{ color: '#DA5726' }}>
+              {this.props.price} €
+              </Typography>
+            }
+          />
+
+          <CardContent>
+            <Typography style={{ color: 'rgba(0, 0, 0, 0.87)',
+              overflow: 'hidden',
+              whiteSpace: 'nowrap',
+              fontSize: '1.2rem' }}>
+              {this.props.name}
             </Typography>
-          }
-          title={this.props.name}
-          subheader={this.props.category}
-        />
-        <div className="img-text-wrapper">
-          <div className="img-wrapper">
-            <CardMedia className={this.state.hovered ? "card-image hovered" : "card-image"}
-              onMouseEnter={() => this.setState({ hovered: true })}
-              onMouseLeave={() => this.setState({ hovered: false })}
-              component="img"
-              height="194"
-              image={this.props.image}
-              alt={this.props.name}
-            />
-          </div>
-          <div className={this.state.texthovered ? "img-description-wrapper text-hovered" : "img-description-wrapper"} onMouseEnter={() => this.setState({ texthovered: true, hovered: true })} onMouseLeave={() => this.setState({ texthovered: false, hovered:false })}>
-            <div className="img-description">
-            {this.props.description}
+          </CardContent>
+          
+          <div className="img-text-wrapper">
+            <div className="img-wrapper">
+              <CardMedia className="card-image"
+                component="img"
+                image={this.props.image}
+                alt={this.props.name}
+              />
+            </div>
+            <div className={this.state.cardHovered ? "img-description-wrapper text-hovered" : "img-description-wrapper"}>
+              <div className="img-description">
+              {this.props.description}
+              </div>
             </div>
           </div>
-        </div>
-        <CardContent>
-          <Typography variant="body2" style={{ color: '#ff9800' }}>
-          {this.props.name}
-          </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to cart">
-            <AddShoppingCart />
-          </IconButton>
-          <IconButton aria-label="share this product">
-            <ShareIcon />
-          </IconButton>
-        </CardActions>
-      </Card>
+
+          <CardContent>
+            <Typography variant="body2" style={{ color: 'gray' }}>
+            {this.props.category}
+            </Typography>
+          </CardContent>
+
+          <CardActions disableSpacing>
+            <IconButton aria-label="add to cart">
+              <AddShoppingCart />
+            </IconButton>
+            <IconButton aria-label="share this product">
+              <ShareIcon />
+            </IconButton>
+          </CardActions>
+          
+        </Card>
     );
   }
 }

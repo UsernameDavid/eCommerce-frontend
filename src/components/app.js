@@ -22,9 +22,9 @@ export default class App extends Component {
           <div>
             <NavigationContainer />
             <Switch>
-            <Route exact path="/" component={Main} />
-            <Route exact path="/cart" component={Cart} />
-            <Route component={NoMatch} />
+              <Route exact path="/" component={Main} />
+              <Route exact path="/cart" component={Cart} />
+              <Route component={NoMatch} />
             </Switch>
           </div>
         </Router>

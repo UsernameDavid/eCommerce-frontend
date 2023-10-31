@@ -11,6 +11,10 @@ export default class NavigationComponent extends Component {
             <div>
                 <div className='nav-wrapper'>
                     <div className="left-side">
+                        <img src="https://i.ibb.co/Gn3pyYh/Ecommerce-Logo.png" />
+                        Online Shopping
+                    </div>
+                    <div className="right-side">
                         <NavLink exact to="/">
                             Main
                         </NavLink>
