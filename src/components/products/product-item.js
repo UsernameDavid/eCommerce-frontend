@@ -6,9 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
-import { Grid } from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons';
 
 export default class ProductItem extends Component {
@@ -16,8 +14,15 @@ export default class ProductItem extends Component {
     super(props);
 
     this.state = {
-      cardHovered: false
+      cardHovered: false,
+      myCart: []
     };
+
+    this.addToMyCart = this.addToMyCart.bind(this);
+  }
+
+  addToMyCart(item) {
+    this.setState({ myCart: this.state.myCart.concat(item) }, console.log("onEnterProps", this.state.myCart.concat(item)));
   }
 
   render() {
@@ -30,7 +35,6 @@ export default class ProductItem extends Component {
           <CardHeader className='card-header'
             action={
               <Typography 
-              variant = 'h7'
               style={{ color: '#DA5726' }}>
               {this.props.price} €
               </Typography>
@@ -55,9 +59,7 @@ export default class ProductItem extends Component {
               />
             </div>
             <div className={this.state.cardHovered ? "img-description-wrapper text-hovered" : "img-description-wrapper"}>
-              <div className="img-description">
               {this.props.description}
-              </div>
             </div>
           </div>
 
@@ -69,7 +71,7 @@ export default class ProductItem extends Component {
 
           <CardActions disableSpacing>
             <IconButton aria-label="add to cart">
-              <AddShoppingCart />
+              <AddShoppingCart onClick={() => this.addToMyCart(this.props)}/>
             </IconButton>
             <IconButton aria-label="share this product">
               <ShareIcon />
@@ -77,6 +79,7 @@ export default class ProductItem extends Component {
           </CardActions>
           
         </Card>
+        
     );
   }
 }

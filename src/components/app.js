@@ -7,7 +7,7 @@ import {
 
 import NavigationContainer from "./navigation/navigation-container"
 import Main from "./pages/main-page";
-import Cart from "./pages/cart-page";
+import Checkout from "./pages/checkout-page";
 import NoMatch from "./pages/no-match";
 
 export default class App extends Component {
@@ -23,7 +23,7 @@ export default class App extends Component {
             <NavigationContainer />
             <Switch>
               <Route exact path="/" component={Main} />
-              <Route exact path="/cart" component={Cart} />
+              <Route exact path="/cart" component={Checkout} />
               <Route component={NoMatch} />
             </Switch>
           </div>

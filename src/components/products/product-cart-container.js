@@ -4,41 +4,27 @@ import axios from "axios";
 import ProductCartItem from "./product-cart-item.js";
 
 export default class ProductCartContainer extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       pageTitle: "Products main page",
       isLoading: false,
-      data: []
+      data: [],
+      length: 0
     };
 
-    this.handleFilter = this.handleFilter.bind(this);
   }
 
-  handleFilter(filter) {
-    if (filter === "CLEAR_FILTERS") {
-      this.getProductItems();
-    } else {
-      this.getProductItems(filter);
-    }
-  }
-
-  getProductItems(filter = null) {
+  getProductItems() {
     axios
       .get('http://127.0.0.1:5000/product/get')
       .then(response => {
-        if (filter) {
-          this.setState({
-            data: response.data.filter(item => {
-              return item.category === filter;
-            })
-          });
-        } else {
-          this.setState({
-            data: response.data
-          });       
-        }
+        this.setState({length: response.data.length})
+        console.log("length", this.state.length)
+        this.setState({
+          data: response.data
+        });       
       })
       .catch(error => {
         console.log("error al obtener respuesta", error);

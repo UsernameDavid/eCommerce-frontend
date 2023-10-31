@@ -4,8 +4,8 @@ import axios from "axios";
 import ProductItem from "./product-item";
 
 export default class ProductContainer extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       pageTitle: "Products main page",
@@ -14,6 +14,14 @@ export default class ProductContainer extends Component {
     };
 
     this.handleFilter = this.handleFilter.bind(this);
+  }
+
+  handleFilter(filter) {
+    if (filter === "CLEAR_FILTERS") {
+      this.getProductItems();
+    } else {
+      this.getProductItems(filter);
+    }
   }
 
   getProductItems(filter = null) {
@@ -47,15 +55,9 @@ export default class ProductContainer extends Component {
     this.getProductItems();
   }
 
-  handleFilter(filter) {
-    if (filter === "CLEAR_FILTERS") {
-      this.getProductItems();
-    } else {
-      this.getProductItems(filter);
-    }
-  }
-
   render() {
+    const { category, description, id, image, name, price } = this.props;
+
     if (this.state.isLoading) {
       return <div>Loading...</div>;
     }
@@ -108,7 +110,9 @@ export default class ProductContainer extends Component {
             </button>
           </div>
         </div>
-        <div className="products-item-wrapper">{this.productItems()}</div>
+        <div className="products-item-wrapper">
+          {this.productItems()}
+        </div>
       </div>
     );
   }
