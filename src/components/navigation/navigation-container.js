@@ -7,10 +7,6 @@ export default class NavigationContainer extends Component {
     constructor(props) {
         super(props);
 
-
-        this.state = {
-            navigationBarBadge: this.props.myCart.length
-        };
     }
 
     render() {
@@ -29,7 +25,7 @@ export default class NavigationContainer extends Component {
                         </NavLink>
                         <NavLink exact to="/cart">
                             <IconButton aria-label='cart'>
-                            <Badge badgeContent={this.state.navigationBarBadge} color="secondary">
+                            <Badge badgeContent={this.props.myCart.length} color="secondary">
                                 <ShoppingCartRounded fontSize='large' />
                             </Badge>
                             </IconButton>

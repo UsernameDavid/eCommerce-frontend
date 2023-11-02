@@ -9,8 +9,7 @@ class MainPage extends Component {
     super(props);
   }
 
-  //TODO When rendering the Navigation Container, I must update the Badge of the navigation bar with the value of myCart.length!!!
-
+  
   render() {
     return (
       <div>
