@@ -1,5 +1,7 @@
 // soruce https://basque.devcamp.com/pt-full-stack-development-javascript-python-react/guide/basic-route-setup-react
 import React, {Component} from "react";
+import Lottie from 'lottie-react';
+import animationData from '../../lotties/no-products-found.json';
 
 import NavigationContainer from "../navigation/navigation-container";
 import ProductCartContainer from "../products/product-cart-container";
@@ -14,11 +16,24 @@ class CheckoutPage extends Component {
         <NavigationContainer myCart={this.props.myCart} />
         <div className="cart-page-wrapper">
           <div className="cart-title">
-            Your Easy Cart
+            {this.props.myCart.length > 0 ? `Your cart has ${this.props.myCart.length} products` : "Your cart is Empty"}
           </div>
-          <div className="cart-products">
+
+          {this.props.myCart.length > 0 ? 
+
+            <div className="cart-products">
             <ProductCartContainer myCart={this.props.myCart} />
-          </div>
+            </div>
+
+           : 
+
+           <Lottie className="lottie"
+           animationData={animationData}
+           height={400}
+           width={400}
+          />
+           }
+
           <div className="cart-total">
             <div>
               Total
@@ -33,6 +48,7 @@ class CheckoutPage extends Component {
               Checkout
             </button>
           </div>
+          
         </div>
       </div>
     )

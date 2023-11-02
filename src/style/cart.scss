@@ -14,9 +14,14 @@
         height: 100%;
         font-size: 1.9rem;
         padding-bottom: 30px;
-        letter-spacing: 0.30rem;
-        word-spacing: 0.30rem;
+        word-spacing: 0.15rem;
       }
+
+    .lottie {
+        //columns 1st & 2nd, 1st & 3rd row
+        grid-column: 1 / 4;
+        grid-row: 3;
+    }
 
     .cart-products {
         //columns 1st & 2nd, 1st & 3rd row

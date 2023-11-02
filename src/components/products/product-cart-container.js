@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import ProductCartItem from "./product-cart-item.js";
-import ProductItem from "./product-item.js";
 
 export default class ProductCartContainer extends Component {
   constructor(props) {
@@ -14,23 +13,6 @@ export default class ProductCartContainer extends Component {
       data: this.props.myCart
     };
 
-  }
-
-  // TODO replace this axios call BY the data in the myCart's state variable inside App
-  getProductItems() {
-    console.log("eieieieieiei", this.props.myCart)
-    axios
-      .get('http://127.0.0.1:5000/product/get')
-      .then(response => {
-        this.setState({length: response.data.length})
-        console.log("length", this.state.length)
-        this.setState({
-          data: response.data
-        });       
-      })
-      .catch(error => {
-        console.log("error al obtener respuesta", error);
-      });
   }
 
   productItems() {
