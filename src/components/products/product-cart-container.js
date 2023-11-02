@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import ProductCartItem from "./product-cart-item.js";
+import ProductItem from "./product-item.js";
 
 export default class ProductCartContainer extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ export default class ProductCartContainer extends Component {
 
   }
 
+  // TODO replace this axios call BY the data in the myCart's state variable inside App
   getProductItems() {
     axios
       .get('http://127.0.0.1:5000/product/get')
@@ -33,12 +35,17 @@ export default class ProductCartContainer extends Component {
 
   productItems() {
     return this.state.data.map(item => {
-      return <ProductCartItem key={item.id} id={item.id} category={item.category} name={item.name} description={item.description} price={item.price} image={item.image} />;
+      if (item.id < 4) {
+        return <ProductCartItem key={item.id} id={item.id} category={item.category} name={item.name} description={item.description} price={item.price} image={item.image} />;
+      }
     });
   }
 
   componentDidMount() {
+    this.data = this.props.data
+    console.log("datos iniciales cart container", this.props.data)
     this.getProductItems();
+
   }
 
   render() {

@@ -15,18 +15,21 @@ export default class ProductItem extends Component {
 
     this.state = {
       cardHovered: false,
-      myCart: []
+      //myCart: this.props.myCart,
+      productIdArray: []
     };
 
     this.addToMyCart = this.addToMyCart.bind(this);
   }
+  
 
   addToMyCart(item) {
-    this.setState({ myCart: this.state.myCart.concat(item) }, console.log("onEnterProps", this.state.myCart.concat(item)));
+    this.props.addtocart(item);
+    console.log("add to cart", this.props.myCart);
   }
 
   render() {
-    const { category, description, id, image, name, price } = this.props;
+    const { category, description, id, image, name, price, myCart } = this.props;
     return (
         <Card className={this.state.cardHovered ? "card-hovered" : "card"}
         onMouseEnter={() => this.setState({ cardHovered: true })}

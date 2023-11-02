@@ -7,6 +7,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { DeleteOutline } from '@material-ui/icons';
 
+import ProductItem from './product-item';
+
 export default class ProductCartItem extends Component {
   constructor(props) {
     super(props);
@@ -14,9 +16,10 @@ export default class ProductCartItem extends Component {
   }
 
   render() {
-    const { category, description, id, image, name, price } = this.props;
+    const { category, description, id, image, name, price} = this.props;
     return (
       <Card className= "card-cart">
+        {this.props.aaa}
         
         <CardHeader className='card-header'
           subheader={this.props.name}
@@ -40,7 +43,6 @@ export default class ProductCartItem extends Component {
         <CardActions className='card-actions' disableSpacing>
           {
             <Typography 
-            variant = 'h7'
             style={{ color: '#DA5726' }}>
             {this.props.price}€
             </Typography>

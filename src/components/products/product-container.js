@@ -4,8 +4,8 @@ import axios from "axios";
 import ProductItem from "./product-item";
 
 export default class ProductContainer extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       pageTitle: "Products main page",
@@ -37,7 +37,7 @@ export default class ProductContainer extends Component {
         } else {
           this.setState({
             data: response.data
-          });       
+          });
         }
       })
       .catch(error => {
@@ -47,7 +47,7 @@ export default class ProductContainer extends Component {
 
   productItems() {
     return this.state.data.map(item => {
-      return <ProductItem key={item.id} id={item.id} category={item.category} name={item.name} description={item.description} price={item.price} image={item.image} />;
+      return <ProductItem key={item.id} id={item.id} category={item.category} name={item.name} description={item.description} price={item.price} image={item.image} myCart={this.props.myCart} addtocart={this.props.addtocart} />;
     });
   }
 
@@ -56,7 +56,7 @@ export default class ProductContainer extends Component {
   }
 
   render() {
-    const { category, description, id, image, name, price } = this.props;
+    const { category, description, id, image, name, price, myCart, cardHovered, productIdArray } = this.props;
 
     if (this.state.isLoading) {
       return <div>Loading...</div>;
