@@ -17,7 +17,7 @@ class CheckoutPage extends Component {
             Your Easy Cart
           </div>
           <div className="cart-products">
-            <ProductCartContainer />
+            <ProductCartContainer myCart={this.props.myCart} />
           </div>
           <div className="cart-total">
             <div>

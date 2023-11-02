@@ -11,14 +11,14 @@ export default class ProductCartContainer extends Component {
     this.state = {
       pageTitle: "Products main page",
       isLoading: false,
-      data: [],
-      length: 0
+      data: this.props.myCart
     };
 
   }
 
   // TODO replace this axios call BY the data in the myCart's state variable inside App
   getProductItems() {
+    console.log("eieieieieiei", this.props.myCart)
     axios
       .get('http://127.0.0.1:5000/product/get')
       .then(response => {
@@ -35,20 +35,19 @@ export default class ProductCartContainer extends Component {
 
   productItems() {
     return this.state.data.map(item => {
-      if (item.id < 4) {
-        return <ProductCartItem key={item.id} id={item.id} category={item.category} name={item.name} description={item.description} price={item.price} image={item.image} />;
-      }
+      return <ProductCartItem key={item.id} id={item.id} category={item.category} name={item.name} description={item.description} price={item.price} image={item.image} myCart={this.props.myCart} />;
     });
   }
 
   componentDidMount() {
     this.data = this.props.data
     console.log("datos iniciales cart container", this.props.data)
-    this.getProductItems();
+    this.productItems();
 
   }
 
   render() {
+    const { myCart } = this.props;
     if (this.state.isLoading) {
       return <div>Loading...</div>;
     }

@@ -47,7 +47,9 @@ addtocart(item) {
               <Route
                 path="/cart"
                 render={props => (
-                  <CheckoutPage {...props} myCart={this.state.myCart} />
+                  <CheckoutPage
+                   {...props}
+                    myCart={this.state.myCart} />
                 )}
               />
 
