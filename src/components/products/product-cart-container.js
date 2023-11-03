@@ -10,22 +10,29 @@ export default class ProductCartContainer extends Component {
     this.state = {
       pageTitle: "Products main page",
       isLoading: false,
-      data: this.props.myCart
+      arrayOfItems: []
     };
 
   }
 
   productItems() {
-    return this.state.data.map(item => {
-      return <ProductCartItem key={item.id} id={item.id} category={item.category} name={item.name} description={item.description} price={item.price} image={item.image} myCart={this.props.myCart} />;
+
+    return this.props.myCart.map(item => {
+
+      return !this.state.arrayOfItems.includes(item.id) ? 
+      (
+        this.state.arrayOfItems = this.state.arrayOfItems.concat(item.id),
+        <ProductCartItem key={item.id} id={item.id} category={item.category} name={item.name} description={item.description} price={item.price} image={item.image} myCart={this.props.myCart} />
+      )
+      : 
+      (
+        null
+      );
     });
   }
 
   componentDidMount() {
-    this.data = this.props.data
-    console.log("datos iniciales cart container", this.props.data)
     this.productItems();
-
   }
 
   render() {

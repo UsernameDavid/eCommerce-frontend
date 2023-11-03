@@ -6,23 +6,40 @@ import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { DeleteOutline } from '@material-ui/icons';
-
-import ProductItem from './product-item';
+import { Badge } from '@material-ui/core';
 
 export default class ProductCartItem extends Component {
   constructor(props) {
     super(props);
 
+
+    this.state = {
+      totalItems: 0
+    }
+
+    this.getTotalofSingleProduct = this.getTotalofSingleProduct.bind(this);
+
+  }
+
+  getTotalofSingleProduct(){
+      this.props.myCart.map(item => {
+        if (item.id === this.props.id) {
+          this.state.totalItems += 1
+        }
+      })
   }
 
   render() {
     const { category, description, id, image, name, price} = this.props;
+    this.getTotalofSingleProduct()
     return (
       <Card className= "card-cart">
-        {this.props.aaa}
-        
         <CardHeader className='card-header'
-          subheader={this.props.name}
+        subheader={
+          <Badge badgeContent={this.state.totalItems}>
+          {this.props.name}
+          </Badge>
+        }
         />
 
         <div className="img-text-wrapper">
