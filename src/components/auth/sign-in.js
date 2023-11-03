@@ -15,6 +15,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Link as RouteLink, useHistory } from "react-router-dom";
 import { auth } from "./firebase";
+import NavigationContainer from "../navigation/navigation-container";
 
 function Copyright() {
   return (
@@ -104,7 +105,7 @@ export default function SignIn() {
             control={<Checkbox value='remember' color='primary' />}
             label='Remember me'
           />
-          <Button
+          <Button style={{ backgroundColor: '#DA5726' }}
             onClick={signin}
             type='submit'
             fullWidth
@@ -114,6 +115,18 @@ export default function SignIn() {
           >
             Sign In
           </Button>
+          <RouteLink to='/'>
+            <Button
+              onClick={signin}
+              type='submit'
+              fullWidth
+              variant='contained'
+              color='primary'
+              className={classes.submit}
+            >
+              Back to Home Page
+            </Button>
+          </RouteLink>
           <Grid container>
             <Grid item xs>
               <Link href='#' variant='body2'>
