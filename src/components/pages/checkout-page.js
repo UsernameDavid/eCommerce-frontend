@@ -9,8 +9,24 @@ import ProductCartContainer from "../products/product-cart-container";
 class CheckoutPage extends Component {
   constructor() {
     super();
+
+    this.state = {
+      price: 0.00
+    }
+
+    this.getTotal = this.getTotal.bind(this)
+
   }
+
+  getTotal(){
+    this.props.myCart.map(item => {
+      this.state.price = this.state.price + parseFloat(item.price.replace(",", "."))
+    })
+    this.state.price = parseFloat(this.state.price).toFixed(2)
+  }
+
   render(){
+    this.getTotal()
     return (
       <div>
         <NavigationContainer myCart={this.props.myCart} />
@@ -42,7 +58,7 @@ class CheckoutPage extends Component {
               Products: {this.props.myCart.length}
             </div>
             <div>
-              115€
+              Cost: {this.state.price} €
             </div>
             <button className="btn cart-checkout">
               Checkout
