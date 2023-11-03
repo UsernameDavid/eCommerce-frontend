@@ -1,5 +1,5 @@
 import { IconButton, Badge } from '@material-ui/core';
-import { ShoppingCartRounded, HomeRounded } from '@material-ui/icons';
+import { ShoppingCartRounded, HomeRounded, AccountCircleRounded } from '@material-ui/icons';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
@@ -28,6 +28,11 @@ export default class NavigationContainer extends Component {
                             <Badge badgeContent={this.props.myCart.length} color="secondary">
                                 <ShoppingCartRounded fontSize='large' />
                             </Badge>
+                            </IconButton>
+                        </NavLink>
+                        <NavLink exact to="/signin">
+                            <IconButton aria-label='signin'>
+                                <AccountCircleRounded fontSize='large' />
                             </IconButton>
                         </NavLink>
                     </div>

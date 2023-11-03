@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 
 import ProductCartItem from "./product-cart-item.js";
 
@@ -22,13 +21,11 @@ export default class ProductCartContainer extends Component {
       return !this.state.arrayOfItems.includes(item.id) ? 
       (
         this.state.arrayOfItems = this.state.arrayOfItems.concat(item.id),
-        <ProductCartItem key={item.id} id={item.id} category={item.category} name={item.name} description={item.description} price={item.price} image={item.image} myCart={this.props.myCart} />
+        <ProductCartItem key={item.id} id={item.id} category={item.category} name={item.name} description={item.description} price={item.price} image={item.image} myCart={this.props.myCart} removefromcart={this.props.removefromcart} />
       )
-      : 
-      (
-        null
-      );
+      : null; 
     });
+
   }
 
   componentDidMount() {

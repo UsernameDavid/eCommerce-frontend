@@ -38,7 +38,7 @@ class CheckoutPage extends Component {
           {this.props.myCart.length > 0 ? 
 
             <div className="cart-products">
-            <ProductCartContainer myCart={this.props.myCart} />
+            <ProductCartContainer myCart={this.props.myCart} removefromcart={this.props.removefromcart} />
             </div>
 
            : 

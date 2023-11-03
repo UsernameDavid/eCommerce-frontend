@@ -14,18 +14,14 @@ export default class ProductItem extends Component {
     super(props);
 
     this.state = {
-      cardHovered: false,
-      //myCart: this.props.myCart,
-      productIdArray: []
+      cardHovered: false
     };
 
     this.addToMyCart = this.addToMyCart.bind(this);
   }
   
-
   addToMyCart(item) {
     this.props.addtocart(item);
-    console.log("add to cart", this.props.myCart);
   }
 
   render() {
@@ -74,7 +70,7 @@ export default class ProductItem extends Component {
 
           <CardActions disableSpacing>
             <IconButton aria-label="add to cart">
-              <AddShoppingCart onClick={() => this.addToMyCart(this.props)}/>
+              <AddShoppingCart onMouseDown={() => this.addToMyCart(this.props)}/>
             </IconButton>
             <IconButton aria-label="share this product">
               <ShareIcon />

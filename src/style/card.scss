@@ -29,6 +29,19 @@
         margin: 25px;
     }
 
+    .MuiCardHeader-root{
+        display: flex;
+        justify-content: space-around;
+        .MuiBadge-badge {
+            justify-content: end;
+
+        }
+    }
+
+    .MuiCardHeader-content{
+        display: flex;
+    }
+
     .MuiCard-root:hover {
         transition: 1s;
         filter: brightness(50%);
@@ -85,8 +98,8 @@
     .card-actions {
         display: flex;
         align-items: center;
-        justify-content: space-around;
-        padding: 0px;
+        justify-content: space-between;
+        padding: 16px;
     }
 
 }

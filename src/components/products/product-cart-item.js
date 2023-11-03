@@ -18,7 +18,11 @@ export default class ProductCartItem extends Component {
     }
 
     this.getTotalofSingleProduct = this.getTotalofSingleProduct.bind(this);
+    this.removeFromMyCart = this.removeFromMyCart.bind(this);
+  }
 
+  removeFromMyCart(item) {
+    this.props.removefromcart(item);
   }
 
   getTotalofSingleProduct(){
@@ -30,13 +34,13 @@ export default class ProductCartItem extends Component {
   }
 
   render() {
-    const { category, description, id, image, name, price} = this.props;
+    const { category, description, id, image, name, price, myCart} = this.props;
     this.getTotalofSingleProduct()
     return (
       <Card className= "card-cart">
         <CardHeader className='card-header'
         subheader={
-          <Badge badgeContent={this.state.totalItems}>
+          <Badge className='badge-cart-card' badgeContent={this.state.totalItems}>
           {this.props.name}
           </Badge>
         }
@@ -61,11 +65,15 @@ export default class ProductCartItem extends Component {
           {
             <Typography 
             style={{ color: '#DA5726' }}>
-            {this.props.price}€
+            {this.props.price} €/u.
             </Typography>
           }
           <IconButton aria-label="remove from cart">
-            <DeleteOutline />
+            <DeleteOutline onMouseDown={() => {
+              this.removeFromMyCart(this.props);
+            }
+          }
+            />
           </IconButton>
         </CardActions>
 
