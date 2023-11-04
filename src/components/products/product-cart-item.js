@@ -12,7 +12,6 @@ export default class ProductCartItem extends Component {
   constructor(props) {
     super(props);
 
-
     this.state = {
       totalItems: 0
     }
@@ -23,9 +22,11 @@ export default class ProductCartItem extends Component {
 
   removeFromMyCart(item) {
     this.props.removefromcart(item);
+    this.props.productCartItems();
+    this.props.getTotal();
   }
 
-  getTotalofSingleProduct(){
+  getTotalofSingleProduct() {
       this.props.myCart.map(item => {
         if (item.id === this.props.id) {
           this.state.totalItems += 1
@@ -33,14 +34,17 @@ export default class ProductCartItem extends Component {
       })
   }
 
+  componentDidMount() {
+    this.getTotalofSingleProduct()
+  }
+
   render() {
     const { category, description, id, image, name, price, myCart} = this.props;
-    this.getTotalofSingleProduct()
     return (
       <Card className= "card-cart">
         <CardHeader className='card-header'
         subheader={
-          <Badge className='badge-cart-card' badgeContent={this.state.totalItems}>
+          <Badge className='badge-cart-card' badgeContent={this.state.totalItems} overlap="rectangular">
           {this.props.name}
           </Badge>
         }
@@ -70,7 +74,7 @@ export default class ProductCartItem extends Component {
           }
           <IconButton aria-label="remove from cart">
             <DeleteOutline onMouseDown={() => {
-              this.removeFromMyCart(this.props);
+              this.removeFromMyCart(this.props.id);
             }
           }
             />

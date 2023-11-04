@@ -10,18 +10,28 @@ export default class ProductCartContainer extends Component {
       pageTitle: "Products main page",
       isLoading: false,
       arrayOfItems: []
+      //      arrayOfItems: this.props.myCart.filter(item => this.props.myCart.filter(x => x.id === item.id).length > 1)
+
     };
+
+    this.productCartItems = this.productCartItems.bind(this);
 
   }
 
-  productItems() {
+  productCartItems() {
 
-    return this.props.myCart.map(item => {
-
+    return this.props.myCart.map((item, index) => {
+      
+      
       return !this.state.arrayOfItems.includes(item.id) ? 
       (
-        this.state.arrayOfItems = this.state.arrayOfItems.concat(item.id),
-        <ProductCartItem key={item.id} id={item.id} category={item.category} name={item.name} description={item.description} price={item.price} image={item.image} myCart={this.props.myCart} removefromcart={this.props.removefromcart} />
+      <ProductCartItem key={index} id={item.id} category={item.category} name={item.name} description={item.description} price={item.price} image={item.image} myCart={this.props.myCart} removefromcart={this.props.removefromcart} productCartItems={this.productCartItems} getTotal={this.props.getTotal} />
+
+      //can't render and update state at the same moment as it produces errors (re-render)
+      /*this.setState ((state, props) => {
+        arrayOfItems: state.arrayOfItems.concat(item.id)
+      })*/       
+
       )
       : null; 
     });
@@ -29,7 +39,7 @@ export default class ProductCartContainer extends Component {
   }
 
   componentDidMount() {
-    this.productItems();
+    this.productCartItems();
   }
 
   render() {
@@ -40,9 +50,8 @@ export default class ProductCartContainer extends Component {
 
     return (
       <div>
-        <div className="products-item-wrapper">{this.productItems()}</div>
+        <div className="products-item-wrapper">{this.productCartItems()}</div>
       </div>
     );
   }
 }
-

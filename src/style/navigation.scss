@@ -20,7 +20,21 @@
   .right-side {
     display: flex;
     align-items: center;
-    a {
+
+    .MuiButton-label {
+      display: flex;
+      flex-direction: column;
+
+      .MuiButton-endIcon {
+        margin: 0px;
+      }
+      
+      .MuiSvgIcon-root{
+        font-size: 1.8rem;
+      }
+    }
+
+    .MuiIconButton-root {
       color: #DA5726;
       margin-left: 15px;
       cursor: pointer;

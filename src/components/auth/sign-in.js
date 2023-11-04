@@ -15,7 +15,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Link as RouteLink, useHistory } from "react-router-dom";
 import { auth } from "./firebase";
-import NavigationContainer from "../navigation/navigation-container";
 
 function Copyright() {
   return (
@@ -50,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
@@ -58,10 +57,14 @@ export default function SignIn() {
 
   const signin = (e) => {
     e.preventDefault();
+    props.updateUserAndPassword(email, password);
     auth
       .signInWithEmailAndPassword(email, password)
-      .then((auth) => history.push("/"))
+      .then(
+        (auth) => history.push("/")
+        )
       .catch((err) => alert(err.message));
+
   };
 
   return (

@@ -6,7 +6,6 @@ import { NavLink } from 'react-router-dom';
 export default class NavigationContainer extends Component {
     constructor(props) {
         super(props);
-
     }
 
     render() {
@@ -25,7 +24,7 @@ export default class NavigationContainer extends Component {
                         </NavLink>
                         <NavLink exact to="/cart">
                             <IconButton aria-label='cart'>
-                            <Badge badgeContent={this.props.myCart.length} color="secondary">
+                            <Badge badgeContent={this.props.myCart.length} color="secondary" overlap="rectangular">
                                 <ShoppingCartRounded fontSize='large' />
                             </Badge>
                             </IconButton>

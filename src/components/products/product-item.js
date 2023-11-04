@@ -26,8 +26,24 @@ export default class ProductItem extends Component {
 
   render() {
     const { category, description, id, image, name, price, myCart } = this.props;
+    const styles = {
+      media: {
+         height: 0,
+         paddingTop: '56.25%' // 16:9
+      },
+      card: {
+         position: 'relative',
+      },
+      overlay: {
+         position: 'absolute',
+         top: '20px',
+         left: '20px',
+         color: 'black',
+         backgroundColor: 'white'
+      }
+   }
     return (
-        <Card className={this.state.cardHovered ? "card-hovered" : "card"}
+        <Card className={this.state.cardHovered ? "card-hovered" : "card"} 
         onMouseEnter={() => this.setState({ cardHovered: true })}
         onMouseLeave={() => this.setState({ cardHovered: false })}>
           
@@ -57,9 +73,9 @@ export default class ProductItem extends Component {
                 alt={this.props.name}
               />
             </div>
-            <div className={this.state.cardHovered ? "img-description-wrapper text-hovered" : "img-description-wrapper"}>
+            <span className={this.state.cardHovered ? "img-description-wrapper text-hovered" : "img-description-wrapper"}>
               {this.props.description}
-            </div>
+            </span>
           </div>
 
           <CardContent>

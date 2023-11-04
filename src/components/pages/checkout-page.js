@@ -7,26 +7,38 @@ import NavigationContainer from "../navigation/navigation-container";
 import ProductCartContainer from "../products/product-cart-container";
 
 class CheckoutPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       price: 0.00
     }
 
-    this.getTotal = this.getTotal.bind(this)
+    this.getTotal = this.getTotal.bind(this);
 
   }
 
   getTotal(){
-    this.props.myCart.map(item => {
-      this.state.price = this.state.price + parseFloat(item.price.replace(",", "."))
-    })
-    this.state.price = parseFloat(this.state.price).toFixed(2)
+
+    let reducer = this.props.myCart.reduce((amount, item) => parseFloat(item.price) + parseFloat(amount), 0)
+    let roundedPrice = reducer.toFixed(2)
+
+    return (
+      this.setState(
+        {
+          price: roundedPrice
+        }
+      )
+    )
+
+  }
+
+  componentDidMount(){
+    this.getTotal()
   }
 
   render(){
-    this.getTotal()
+
     return (
       <div>
         <NavigationContainer myCart={this.props.myCart} />
@@ -38,7 +50,7 @@ class CheckoutPage extends Component {
           {this.props.myCart.length > 0 ? 
 
             <div className="cart-products">
-            <ProductCartContainer myCart={this.props.myCart} removefromcart={this.props.removefromcart} />
+            <ProductCartContainer myCart={this.props.myCart} removefromcart={this.props.removefromcart} getTotal={this.getTotal} />
             </div>
 
            : 
