@@ -41,7 +41,7 @@ class CheckoutPage extends Component {
 
     return (
       <div>
-        <NavigationContainer myCart={this.props.myCart} />
+        <NavigationContainer myCart={this.props.myCart} loggedInStatus={this.props.loggedInStatus} />
         <div className="cart-page-wrapper">
           <div className="cart-title">
             {this.props.myCart.length > 0 ? `Your cart has ${this.props.myCart.length} products` : "Your cart is Empty"}

@@ -15,6 +15,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Link as RouteLink, useHistory } from "react-router-dom";
 import { auth } from "./firebase";
+import NavigationContainer from "../navigation/navigation-container";
 
 function Copyright() {
   return (
@@ -70,6 +71,7 @@ export default function SignIn(props) {
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
+      <NavigationContainer myCart={0} loggedInStatus={props.loggedInStatus}/>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />

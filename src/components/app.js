@@ -79,14 +79,22 @@ checkLoginStatus() {
 
   auth
   .signInWithEmailAndPassword(this.state.email, this.state.password)
-  .then(
-    (auth) => this.setState({
+  .then((auth) => 
+  
+      /*this.setState({
       loggedInStatus: "LOGGED_IN"
-      })
+      })*/
+      this.setState(state => ({ loggedInStatus: "LOGGED_IN" }) )
+
+
     )
-    .catch((err) => this.setState({
+    .catch((err) => 
+    
+    /*this.setState({
       loggedInStatus: "NOT_LOGGED_IN"
-      })
+      })*/
+      this.setState(state => ({ loggedInStatus: "NOT_LOGGED_IN" }) )
+
     );
 
 }
@@ -113,7 +121,6 @@ updateUserAndPassword(newemail, newpassword) {
 
 }
 
-
   render() {
     return (
       <div className='app'>
@@ -126,27 +133,36 @@ updateUserAndPassword(newemail, newpassword) {
                   <MainPage
                   {...props}
                   myCart={this.state.myCart}
-                  addtocart={this.addtocart}  />
+                  addtocart={this.addtocart}
+                  loggedInStatus={this.state.loggedInStatus}  />
                 )}
               />
+
               <Route
                 path="/cart"
                 render={props => (
                   <CheckoutPage
                    {...props}
                     myCart={this.state.myCart}
-                    removefromcart={this.removefromcart} />
+                    removefromcart={this.removefromcart}
+                    loggedInStatus={this.state.loggedInStatus} />
                 )}
               />
+
               <Route 
               path="/signin"
               render={props => (
                 <SignIn
                 {...props}
-                updateUserAndPassword={this.updateUserAndPassword} />
+                myCart={this.state.myCart}
+                updateUserAndPassword={this.updateUserAndPassword}
+                loggedInStatus={this.state.loggedInStatus} />
                 )}
                 />
-              <Route path="/signup" component={SignUp} />
+
+              <Route path="/signup" component={SignUp}
+              loggedInStatus={this.state.loggedInStatus} />
+
               <Route component={NoMatchPage} />
             </Switch>
           </div>

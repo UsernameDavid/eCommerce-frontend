@@ -1,11 +1,12 @@
 import { IconButton, Badge } from '@material-ui/core';
-import { ShoppingCartRounded, HomeRounded, AccountCircleRounded } from '@material-ui/icons';
+import { ShoppingCartRounded, HomeRounded, PersonAdd, HowToReg } from '@material-ui/icons';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
 export default class NavigationContainer extends Component {
     constructor(props) {
         super(props);
+
     }
 
     render() {
@@ -31,7 +32,7 @@ export default class NavigationContainer extends Component {
                         </NavLink>
                         <NavLink exact to="/signin">
                             <IconButton aria-label='signin'>
-                                <AccountCircleRounded fontSize='large' />
+                             {this.props.loggedInStatus === "LOGGED_IN" ? <HowToReg fontSize='large' /> : <PersonAdd fontSize='large' />}
                             </IconButton>
                         </NavLink>
                     </div>

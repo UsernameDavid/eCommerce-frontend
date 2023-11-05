@@ -13,6 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Link as RouteLink, useHistory } from "react-router-dom";
 import { auth } from "./firebase";
+import NavigationContainer from "../navigation/navigation-container";
 
 function Copyright() {
   return (
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+export default function SignUp(props) {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -69,6 +70,7 @@ export default function SignUp() {
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
+      <NavigationContainer myCart={0} loggedInStatus={props.loggedInStatus}/>
       <div className={classes.paper}>
         <Avatar className={classes.avatar} >
           <LockOutlinedIcon />
