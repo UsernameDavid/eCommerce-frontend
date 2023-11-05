@@ -12,6 +12,7 @@ import NoMatchPage from "./pages/no-match";
 //created with Material UI v4 Sign In template and linked to Firebase Auth
 import SignIn from './auth/sign-in';
 import SignUp from './auth/sign-up';
+//import Checkout from './checkoutform/Checkout';
 
 export default class App extends Component {
   constructor(props) {
@@ -122,7 +123,8 @@ componentDidMount(){
                   {...props}
                   myCart={this.state.myCart}
                   addtocart={this.addtocart}
-                  loggedInStatus={this.state.loggedInStatus}  />
+                  loggedInStatus={this.state.loggedInStatus}
+                  updateUserAndPassword={this.updateUserAndPassword}  />
                 )}
               />
 
@@ -133,7 +135,8 @@ componentDidMount(){
                    {...props}
                     myCart={this.state.myCart}
                     removefromcart={this.removefromcart}
-                    loggedInStatus={this.state.loggedInStatus} />
+                    loggedInStatus={this.state.loggedInStatus}
+                    updateUserAndPassword={this.updateUserAndPassword} />
                 )}
               />
 
@@ -143,14 +146,30 @@ componentDidMount(){
                 <SignIn
                 {...props}
                 myCart={this.state.myCart}
-                updateUserAndPassword={this.updateUserAndPassword}
                 loggedInStatus={this.state.loggedInStatus}
-                checkLoginStatus={this.checkLoginStatus} />
+                updateUserAndPassword={this.updateUserAndPassword} />
                 )}
                 />
 
-              <Route path="/signup" component={SignUp}
-              loggedInStatus={this.state.loggedInStatus} />
+              <Route
+              path="/signup"
+              render={props => (
+                <SignUp
+                {...props}
+                myCart={this.state.myCart}
+                loggedInStatus={this.state.loggedInStatus}
+                updateUserAndPassword={this.updateUserAndPassword} />
+              )}
+              />
+
+              {/*<Route
+              path="/checkout" 
+              render={props => (
+              <Checkout
+              {...props}
+              myCart={this.state.myCart} />
+              )}
+              />*/}
 
               <Route component={NoMatchPage} />
             </Switch>

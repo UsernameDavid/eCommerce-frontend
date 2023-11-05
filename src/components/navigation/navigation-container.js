@@ -1,7 +1,8 @@
 import { IconButton, Badge } from '@material-ui/core';
-import { ShoppingCartRounded, HomeRounded, PersonAdd, HowToReg } from '@material-ui/icons';
+import { ShoppingCartRounded, HomeRounded, PersonAdd, HowToReg, ExitToApp } from '@material-ui/icons';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { auth } from "../auth/firebase";
 
 export default class NavigationContainer extends Component {
     constructor(props) {
@@ -35,6 +36,16 @@ export default class NavigationContainer extends Component {
                              {this.props.loggedInStatus === "LOGGED_IN" ? <HowToReg fontSize='large' /> : <PersonAdd fontSize='large' />}
                             </IconButton>
                         </NavLink>
+                        {this.props.loggedInStatus === "LOGGED_IN" ?
+                            <IconButton aria-label='logOut' onClick={
+                                () => (auth.signOut(),
+                                this.props.updateUserAndPassword("", "")
+                                )
+                                }>
+                                <ExitToApp fontSize='large' />
+                            </IconButton>
+                        :
+                        null}
                     </div>
                 </div>
             </div>

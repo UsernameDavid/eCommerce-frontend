@@ -13,7 +13,7 @@ class MainPage extends Component {
   render() {
     return (
       <div>
-        <NavigationContainer myCart={this.props.myCart} loggedInStatus={this.props.loggedInStatus} />
+        <NavigationContainer myCart={this.props.myCart} loggedInStatus={this.props.loggedInStatus} updateUserAndPassword={this.props.updateUserAndPassword} />
         <ProductContainer myCart={this.props.myCart} addtocart={this.props.addtocart} />
       </div>
     )

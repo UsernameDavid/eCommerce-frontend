@@ -71,7 +71,7 @@ export default function SignIn(props) {
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
-      <NavigationContainer myCart={0} loggedInStatus={props.loggedInStatus}/>
+      <NavigationContainer myCart={props.myCart} loggedInStatus={props.loggedInStatus}/>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
