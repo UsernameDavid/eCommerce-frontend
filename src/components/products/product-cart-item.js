@@ -44,7 +44,7 @@ export default class ProductCartItem extends Component {
       <Card className= "card-cart">
         <CardHeader className='card-header'
         subheader={
-          <Badge className='badge-cart-card' badgeContent={this.state.totalItems} overlap="rectangular">
+          <Badge className='badge-cart-card' overlap="rectangular">
           {this.props.name}
           </Badge>
         }
@@ -69,7 +69,7 @@ export default class ProductCartItem extends Component {
           {
             <Typography 
             style={{ color: '#DA5726' }}>
-            {this.props.price} €/u.
+            {this.props.price} €
             </Typography>
           }
           <IconButton aria-label="remove from cart">
