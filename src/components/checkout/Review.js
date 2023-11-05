@@ -38,8 +38,8 @@ export default function Review(props) {
         Order summary
       </Typography>
       <List disablePadding>
-        {products.map((product) => (
-          <ListItem className={classes.listItem} key={product.name}>
+        {products.map((product, index) => (
+          <ListItem className={classes.listItem} key={index}>
             <ListItemText primary={product.name} secondary={product.desc} />
             <Typography variant="body2">{product.price}</Typography>
           </ListItem>
