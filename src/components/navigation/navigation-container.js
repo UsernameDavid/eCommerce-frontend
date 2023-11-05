@@ -31,15 +31,22 @@ export default class NavigationContainer extends Component {
                             </Badge>
                             </IconButton>
                         </NavLink>
+                        
+                        {this.props.loggedInStatus === "LOGGED_IN" ?
+                            null
+                        :
                         <NavLink exact to="/signin">
                             <IconButton aria-label='signin'>
-                             {this.props.loggedInStatus === "LOGGED_IN" ? <HowToReg fontSize='large' /> : <PersonAdd fontSize='large' />}
+                             <PersonAdd fontSize='large' />
                             </IconButton>
                         </NavLink>
+                        }
+
                         {this.props.loggedInStatus === "LOGGED_IN" ?
                             <IconButton aria-label='logOut' onClick={
                                 () => (auth.signOut(),
-                                this.props.updateUserAndPassword("", "")
+                                this.props.updateUserAndPassword("", ""),
+                                alert("successfully log out")
                                 )
                                 }>
                                 <ExitToApp fontSize='large' />
