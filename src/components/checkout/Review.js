@@ -30,15 +30,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Review(props) {
   const classes = useStyles();
-  const products = props.myCart;
 
   return (
-    <React.Fragment>
+    <div>
       <Typography variant="h6" gutterBottom>
         Order summary
       </Typography>
       <List disablePadding>
-        {products.map((product, index) => (
+        {props.myCart.map((product, index) => (
           <ListItem className={classes.listItem} key={index}>
             <ListItemText primary={product.name} />
             <Typography variant="body2">{product.price} €</Typography>
@@ -47,7 +46,7 @@ export default function Review(props) {
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            {products.reduce((amount, item) => parseFloat(item.price) + parseFloat(amount), 0)} €
+            {(props.myCart.reduce((amount, item) => parseFloat(item.price) + parseFloat(amount), 0)).toFixed(2)} €
           </Typography>
         </ListItem>
       </List>
@@ -77,6 +76,6 @@ export default function Review(props) {
           </Grid>
         </Grid>
       </Grid>
-    </React.Fragment>
+    </div>
   );
 }

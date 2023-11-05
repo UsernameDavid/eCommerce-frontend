@@ -12,10 +12,10 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import AddressForm from './address-form';
 import PaymentForm from './payment-form';
-import Review from './review';
 import { NavLink } from 'react-router-dom';
 import { IconButton } from '@material-ui/core';
 import { HomeRounded } from '@material-ui/icons';
+import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
 
 /* Used and adapted a template from Material UI v4 -> https://v4.mui.com/es/getting-started/templates/ */
@@ -71,16 +71,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
+const steps = ['Shipping address', 'Payment details'];
 
 function getStepContent(step, myCart) {
+  //const stripePromise = loadStripe("pk_test_51O9B5oCpzkxzVmTiRjmJBlZoFFvWv3QZC5dDjC6ZuZGNiYU6Pup4NnzTWIc3tTMbs7YkbOmBlhPC0QAemldtt3Ak00VDhj1fHL")
+
   switch (step) {
     case 0:
       return <AddressForm />;
     case 1:
-      return <PaymentForm />;
+      return <PaymentForm myCart={myCart} />;
     case 2:
-      return <Review myCart={myCart}/>;
     default:
       throw new Error('Unknown step');
   }
@@ -89,6 +90,8 @@ function getStepContent(step, myCart) {
 export default function Checkout(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  //const stripe = useStripe();
+  //const elements = useElements();
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -97,6 +100,15 @@ export default function Checkout(props) {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+
+  /*const handleSubmitPayment = async (e) => {
+    e.preventDefault();
+    const {error, paymentMethod} = await stripe.createPaymentMethod({
+      type: "card",
+      card: elements.getElement(CardElement)
+    })
+    console.log("paymentMethod", paymentMethod)
+  }*/
 
   return (
     <React.Fragment>
@@ -145,14 +157,28 @@ export default function Checkout(props) {
                       Back
                     </Button>
                   )}
+
+                  {
+                  activeStep === steps.length - 1 ? 
+
                   <Button
                     variant="contained"
                     color="primary"
                     onClick={handleNext}
-                    className={classes.button}
-                  >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    className={classes.button}>
+                    PLACER ORDER
                   </Button>
+                  :
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleNext}
+                    className={classes.button}>
+                    NEXT
+                  </Button>
+                  }
+
+
                 </div>
               </React.Fragment>
             )}
