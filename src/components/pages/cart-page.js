@@ -2,11 +2,12 @@
 import React, {Component} from "react";
 import Lottie from 'lottie-react';
 import animationData from '../../lotties/no-products-found.json';
+import { NavLink } from 'react-router-dom';
 
 import NavigationContainer from "../navigation/navigation-container";
 import ProductCartContainer from "../products/product-cart-container";
 
-class CheckoutPage extends Component {
+class CartPage extends Component {
   constructor(props) {
     super(props);
 
@@ -48,13 +49,10 @@ class CheckoutPage extends Component {
           </div>
 
           {this.props.myCart.length > 0 ? 
-
             <div className="cart-products">
             <ProductCartContainer myCart={this.props.myCart} removefromcart={this.props.removefromcart} getTotal={this.getTotal} />
             </div>
-
            : 
-
            <Lottie className="lottie"
            animationData={animationData}
            height={400}
@@ -72,9 +70,29 @@ class CheckoutPage extends Component {
             <div>
               Cost: {this.state.price} €
             </div>
-            <button className="btn cart-checkout" onClick={() => this.props.loggedInStatus === "LOGGED_IN" ? alert("This has not been implemented yet") : alert("Please, Sign In or Sign Up if you don't have an account yet in order to continue") } >
+
+            {
+            this.props.loggedInStatus === "LOGGED_IN" ?
+            
+              (
+              this.props.myCart.length > 0 ?
+              <NavLink exact to="/checkout">
+                <button className="btn cart-checkout" >
+                  Checkout
+                </button>
+              </NavLink>
+              :
+              <button className="btn cart-checkout" onClick={() => alert("Please, add some products to the cart") } >
+                Checkout
+              </button>
+              )
+            
+            :
+            <button className="btn cart-checkout" onClick={() => alert("Please, Sign In or Sign Up if you don't have an account yet in order to continue") } >
               Checkout
             </button>
+            }
+
           </div>
           
         </div>
@@ -83,4 +101,4 @@ class CheckoutPage extends Component {
   }
 }
 
-export default CheckoutPage;
+export default CartPage;

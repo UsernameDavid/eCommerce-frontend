@@ -7,12 +7,12 @@ import {
 import { auth } from "./auth/firebase";
 
 import MainPage from "./pages/main-page";
-import CheckoutPage from "./pages/checkout-page";
+import CartPage from "./pages/cart-page";
 import NoMatchPage from "./pages/no-match";
 //created with Material UI v4 Sign In template and linked to Firebase Auth
 import SignIn from './auth/sign-in';
 import SignUp from './auth/sign-up';
-//import Checkout from './checkoutform/Checkout';
+import Checkout from './checkout/Checkout';
 
 export default class App extends Component {
   constructor(props) {
@@ -131,7 +131,7 @@ componentDidMount(){
               <Route
                 path="/cart"
                 render={props => (
-                  <CheckoutPage
+                  <CartPage
                    {...props}
                     myCart={this.state.myCart}
                     removefromcart={this.removefromcart}
@@ -149,7 +149,7 @@ componentDidMount(){
                 loggedInStatus={this.state.loggedInStatus}
                 updateUserAndPassword={this.updateUserAndPassword} />
                 )}
-                />
+              />
 
               <Route
               path="/signup"
@@ -162,14 +162,7 @@ componentDidMount(){
               )}
               />
 
-              {/*<Route
-              path="/checkout" 
-              render={props => (
-              <Checkout
-              {...props}
-              myCart={this.state.myCart} />
-              )}
-              />*/}
+              <Route path="/checkout"  component={Checkout} />
 
               <Route component={NoMatchPage} />
             </Switch>

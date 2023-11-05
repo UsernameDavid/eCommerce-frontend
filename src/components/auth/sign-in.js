@@ -17,6 +17,8 @@ import { Link as RouteLink, useHistory } from "react-router-dom";
 import { auth } from "./firebase";
 import NavigationContainer from "../navigation/navigation-container";
 
+/* Used and adapted template from Material UI v4 -> https://v4.mui.com/es/getting-started/templates/ */
+
 function Copyright() {
   return (
     <Typography variant='body2' color='textSecondary' align='center'>

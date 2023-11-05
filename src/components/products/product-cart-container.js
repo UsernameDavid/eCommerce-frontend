@@ -8,10 +8,7 @@ export default class ProductCartContainer extends Component {
 
     this.state = {
       pageTitle: "Products main page",
-      isLoading: false,
-      arrayOfItems: []
-      //      arrayOfItems: this.props.myCart.filter(item => this.props.myCart.filter(x => x.id === item.id).length > 1)
-
+      isLoading: false
     };
 
     this.productCartItems = this.productCartItems.bind(this);
@@ -19,23 +16,9 @@ export default class ProductCartContainer extends Component {
   }
 
   productCartItems() {
-
     return this.props.myCart.map((item, index) => {
-      
-      
-      return !this.state.arrayOfItems.includes(item.id) ? 
-      (
-      <ProductCartItem key={index} id={item.id} category={item.category} name={item.name} description={item.description} price={item.price} image={item.image} myCart={this.props.myCart} removefromcart={this.props.removefromcart} productCartItems={this.productCartItems} getTotal={this.props.getTotal} />
-
-      //can't render and update state at the same moment as it produces errors (re-render)
-      /*this.setState ((state, props) => {
-        arrayOfItems: state.arrayOfItems.concat(item.id)
-      })*/       
-
-      )
-      : null; 
-    });
-
+      return <ProductCartItem key={index} id={item.id} category={item.category} name={item.name} description={item.description} price={item.price} image={item.image} myCart={this.props.myCart} removefromcart={this.props.removefromcart} productCartItems={this.productCartItems} getTotal={this.props.getTotal} />
+    })
   }
 
   componentDidMount() {
