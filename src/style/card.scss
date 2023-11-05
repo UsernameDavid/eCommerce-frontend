@@ -40,7 +40,7 @@
 
     .MuiCard-root:hover {
         transition: 1s;
-        filter: brightness(50%);
+        filter: brightness(95%);
     }
 
     //overrides the onhover if we are in the cart section
@@ -63,7 +63,9 @@
     }
 
     .text-hovered {
+        display: flex;
         color: whitesmoke;
+        mix-blend-mode: difference; 
     }
 
     .img-description {

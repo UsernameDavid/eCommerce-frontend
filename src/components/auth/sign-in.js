@@ -122,7 +122,6 @@ export default function SignIn(props) {
           </Button>
           <RouteLink to='/'>
             <Button
-              onClick={signin}
               type='submit'
               fullWidth
               variant='contained'

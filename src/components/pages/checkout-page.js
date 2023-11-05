@@ -72,7 +72,7 @@ class CheckoutPage extends Component {
             <div>
               Cost: {this.state.price} €
             </div>
-            <button className="btn cart-checkout">
+            <button className="btn cart-checkout" onClick={() => this.props.loggedInStatus === "LOGGED_IN" ? alert("This has not been implemented yet") : alert("Please, Sign In or Sign Up if you don't have an account yet in order to continue") } >
               Checkout
             </button>
           </div>

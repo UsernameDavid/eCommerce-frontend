@@ -76,27 +76,14 @@ handleSuccessfulLogout() {
 }
 
 checkLoginStatus() {
-
   auth
   .signInWithEmailAndPassword(this.state.email, this.state.password)
   .then((auth) => 
-  
-      /*this.setState({
-      loggedInStatus: "LOGGED_IN"
-      })*/
-      this.setState(state => ({ loggedInStatus: "LOGGED_IN" }) )
-
-
-    )
-    .catch((err) => 
-    
-    /*this.setState({
-      loggedInStatus: "NOT_LOGGED_IN"
-      })*/
-      this.setState(state => ({ loggedInStatus: "NOT_LOGGED_IN" }) )
-
-    );
-
+    this.setState({ loggedInStatus: "LOGGED_IN" } )
+  )
+  .catch((err) => 
+    this.setState({ loggedInStatus: "NOT_LOGGED_IN" }) 
+  );
 }
 
 updateUserAndPassword(newemail, newpassword) {
@@ -107,18 +94,12 @@ updateUserAndPassword(newemail, newpassword) {
     password: newpassword
   })
 
-  auth
-  .signInWithEmailAndPassword(this.state.email, this.state.password)
-  .then(
-    (auth) => this.setState({
-      loggedInStatus: "LOGGED_IN"
-      })
-    )
-    .catch((err) => this.setState({
-      loggedInStatus: "NOT_LOGGED_IN"
-      })
-    );
+this.checkLoginStatus()
 
+}
+
+componentDidMount(){
+  this.updateUserAndPassword(this.state.email, this.state.password);
 }
 
   render() {
@@ -156,7 +137,8 @@ updateUserAndPassword(newemail, newpassword) {
                 {...props}
                 myCart={this.state.myCart}
                 updateUserAndPassword={this.updateUserAndPassword}
-                loggedInStatus={this.state.loggedInStatus} />
+                loggedInStatus={this.state.loggedInStatus}
+                checkLoginStatus={this.checkLoginStatus} />
                 )}
                 />
 
