@@ -5,9 +5,9 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-/* Used and adapted template from Material UI v4 -> https://v4.mui.com/es/getting-started/templates/ */
+/* Used and adapted a template from Material UI v4 -> https://v4.mui.com/es/getting-started/templates/ */
 
-export default function AddressForm() {
+export default function AddressForm(props) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

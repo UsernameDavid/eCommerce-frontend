@@ -10,11 +10,15 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import AddressForm from './AddressForm';
-import PaymentForm from './PaymentForm';
-import Review from './Review';
+import AddressForm from './address-form';
+import PaymentForm from './payment-form';
+import Review from './review';
+import { NavLink } from 'react-router-dom';
+import { IconButton } from '@material-ui/core';
+import { HomeRounded } from '@material-ui/icons';
 
-/* Used and adapted template from Material UI v4 -> https://v4.mui.com/es/getting-started/templates/ */
+
+/* Used and adapted a template from Material UI v4 -> https://v4.mui.com/es/getting-started/templates/ */
 
 
 function Copyright() {
@@ -69,20 +73,20 @@ const useStyles = makeStyles((theme) => ({
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
-function getStepContent(step) {
+function getStepContent(step, myCart) {
   switch (step) {
     case 0:
       return <AddressForm />;
     case 1:
       return <PaymentForm />;
     case 2:
-      return <Review />;
+      return <Review myCart={myCart}/>;
     default:
       throw new Error('Unknown step');
   }
 }
 
-export default function Checkout() {
+export default function Checkout(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -100,8 +104,13 @@ export default function Checkout() {
       <AppBar position="absolute" color="default" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            Company name
+            Easy Online Shopping - Check Out
           </Typography>
+          <NavLink exact to="/">
+            <IconButton aria-label='home'>
+                <HomeRounded fontSize='large' />
+            </IconButton>
+          </NavLink>
         </Toolbar>
       </AppBar>
       <main className={classes.layout}>
@@ -129,7 +138,7 @@ export default function Checkout() {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep)}
+                {getStepContent(activeStep, props.myCart)}
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} className={classes.button}>

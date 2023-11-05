@@ -162,7 +162,14 @@ componentDidMount(){
               )}
               />
 
-              <Route path="/checkout"  component={Checkout} />
+              <Route
+              path="/checkout"
+              render={props => (
+                <Checkout
+                {...props}
+                myCart={this.state.myCart} />
+              )}
+              />
 
               <Route component={NoMatchPage} />
             </Switch>
