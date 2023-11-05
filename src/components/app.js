@@ -42,11 +42,19 @@ addtocart(item) {
 }
 
 removefromcart(item) {
-      let newCart = [...this.state.myCart]
-      const itemToBeRemoved = this.state.myCart.splice(item.id-1, 1)
-      this.setState({
-        myCart: this.state.myCart
-      });
+
+  let cart = this.state.myCart
+
+  let index = cart.findIndex((cartItem => cartItem.id === item.id))
+  let newCart = this.state.myCart
+  newCart.splice(index, 1)
+
+  return (
+    this.setState({
+      myCart: newCart
+    })
+  )
+
 }
 
 handleSuccessfulLogin() {

@@ -74,7 +74,7 @@ export default class ProductCartItem extends Component {
           }
           <IconButton aria-label="remove from cart">
             <DeleteOutline onMouseDown={() => {
-              this.removeFromMyCart(this.props.id);
+              this.removeFromMyCart({ category, description, id, image, name, price});
             }
           }
             />
