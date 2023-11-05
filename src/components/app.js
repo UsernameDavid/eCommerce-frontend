@@ -94,7 +94,14 @@ updateUserAndPassword(newemail, newpassword) {
     password: newpassword
   })
 
-this.checkLoginStatus()
+  auth
+  .signInWithEmailAndPassword(newemail, newpassword)
+  .then((auth) => 
+    this.setState({ loggedInStatus: "LOGGED_IN" } )
+  )
+  .catch((err) => 
+    this.setState({ loggedInStatus: "NOT_LOGGED_IN" }) 
+  );
 
 }
 
