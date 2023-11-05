@@ -40,14 +40,14 @@ export default function Review(props) {
       <List disablePadding>
         {products.map((product, index) => (
           <ListItem className={classes.listItem} key={index}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+            <ListItemText primary={product.name} />
+            <Typography variant="body2">{product.price} €</Typography>
           </ListItem>
         ))}
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            $34.06
+            {products.reduce((amount, item) => parseFloat(item.price) + parseFloat(amount), 0)} €
           </Typography>
         </ListItem>
       </List>
