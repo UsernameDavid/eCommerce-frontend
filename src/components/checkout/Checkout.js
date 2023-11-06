@@ -71,16 +71,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const steps = ['Shipping address', 'Payment details'];
+const steps = ['Shipping details', 'Review & Payment'];
 
-function getStepContent(step, myCart) {
+function getStepContent(step, myCart, handleBack) {
   //const stripePromise = loadStripe("pk_test_51O9B5oCpzkxzVmTiRjmJBlZoFFvWv3QZC5dDjC6ZuZGNiYU6Pup4NnzTWIc3tTMbs7YkbOmBlhPC0QAemldtt3Ak00VDhj1fHL")
 
   switch (step) {
     case 0:
       return <AddressForm />;
     case 1:
-      return <PaymentForm myCart={myCart} />;
+      return <PaymentForm myCart={myCart} handleBack={handleBack} />;
     case 2:
     default:
       throw new Error('Unknown step');
@@ -100,15 +100,6 @@ export default function Checkout(props) {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-
-  /*const handleSubmitPayment = async (e) => {
-    e.preventDefault();
-    const {error, paymentMethod} = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardElement)
-    })
-    console.log("paymentMethod", paymentMethod)
-  }*/
 
   return (
     <React.Fragment>
@@ -150,25 +141,17 @@ export default function Checkout(props) {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep, props.myCart)}
+                {getStepContent(activeStep, props.myCart, handleBack)}
                 <div className={classes.buttons}>
-                  {activeStep !== 0 && (
-                    <Button onClick={handleBack} className={classes.button}>
-                      Back
-                    </Button>
-                  )}
-
+                  {activeStep !== 0}
                   {
-                  activeStep === steps.length - 1 ? 
-
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}>
-                    PLACER ORDER
-                  </Button>
+                  activeStep === steps.length - 1 ?
+                  null
                   :
+                  (                   
+                  <Button onClick={handleBack} className={classes.button}>
+                    Back
+                  </Button>,
                   <Button
                     variant="contained"
                     color="primary"
@@ -176,9 +159,8 @@ export default function Checkout(props) {
                     className={classes.button}>
                     NEXT
                   </Button>
+                  )
                   }
-
-
                 </div>
               </React.Fragment>
             )}
