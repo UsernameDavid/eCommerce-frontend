@@ -15,7 +15,7 @@ import PaymentForm from './payment-form';
 import { NavLink } from 'react-router-dom';
 import { IconButton } from '@material-ui/core';
 import { HomeRounded } from '@material-ui/icons';
-import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import Confirmation from './confirmation';
 
 
 /* Used and adapted a template from Material UI v4 -> https://v4.mui.com/es/getting-started/templates/ */
@@ -26,7 +26,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-      David Fernández @ Devcamp
+        David Fernández @ Devcamp
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -71,17 +71,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const steps = ['Shipping details', 'Review & Payment'];
+const steps = ['Shipping details', 'Review & Payment', 'Confirmation'];
 
-function getStepContent(step, myCart, handleBack) {
-  //const stripePromise = loadStripe("pk_test_51O9B5oCpzkxzVmTiRjmJBlZoFFvWv3QZC5dDjC6ZuZGNiYU6Pup4NnzTWIc3tTMbs7YkbOmBlhPC0QAemldtt3Ak00VDhj1fHL")
-
+function getStepContent(step, myCart, handleBack, handleNext) {
   switch (step) {
     case 0:
       return <AddressForm />;
     case 1:
-      return <PaymentForm myCart={myCart} handleBack={handleBack} />;
+      return <PaymentForm myCart={myCart} handleBack={handleBack} handleNext={handleNext} />;
     case 2:
+      return <Confirmation />;
     default:
       throw new Error('Unknown step');
   }
@@ -90,8 +89,6 @@ function getStepContent(step, myCart, handleBack) {
 export default function Checkout(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  //const stripe = useStripe();
-  //const elements = useElements();
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -103,7 +100,9 @@ export default function Checkout(props) {
 
   return (
     <React.Fragment>
+
       <CssBaseline />
+
       <AppBar position="absolute" color="default" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
@@ -111,16 +110,20 @@ export default function Checkout(props) {
           </Typography>
           <NavLink exact to="/">
             <IconButton aria-label='home'>
-                <HomeRounded fontSize='large' />
+              <HomeRounded fontSize='large' />
             </IconButton>
           </NavLink>
         </Toolbar>
       </AppBar>
+
       <main className={classes.layout}>
+
         <Paper className={classes.paper}>
+
           <Typography component="h1" variant="h4" align="center">
             Checkout
           </Typography>
+
           <Stepper activeStep={activeStep} className={classes.stepper}>
             {steps.map((label) => (
               <Step key={label}>
@@ -128,46 +131,49 @@ export default function Checkout(props) {
               </Step>
             ))}
           </Stepper>
+
           <React.Fragment>
-            {activeStep === steps.length ? (
-              <React.Fragment>
-                <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
-                </Typography>
-                <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order confirmation, and will
-                  send you an update when your order has shipped.
-                </Typography>
-              </React.Fragment>
+
+            {activeStep === 999 ? (
+            null
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep, props.myCart, handleBack)}
+                {getStepContent(activeStep, props.myCart, handleBack, handleNext)}
                 <div className={classes.buttons}>
-                  {activeStep !== 0}
                   {
-                  activeStep === steps.length - 1 ?
-                  null
-                  :
-                  (                   
-                  <Button onClick={handleBack} className={classes.button}>
-                    Back
-                  </Button>,
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}>
-                    NEXT
-                  </Button>
-                  )
+                    activeStep === 0 ?
+                      (
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={handleNext}
+                          className={classes.button}>
+                          NEXT
+                        </Button>
+                      )
+                      :
+                      //Step 1 Button's are managed inside PaymentForm component
+                      activeStep === 2 ?
+                        <NavLink exact to="/" >
+                          <Button className={classes.button}>
+                            NICE!
+                          </Button>
+                        </NavLink>
+                        :
+                        null
                   }
+
                 </div>
               </React.Fragment>
             )}
           </React.Fragment>
+
         </Paper>
+
         <Copyright />
+
       </main>
+
     </React.Fragment>
   );
 }
