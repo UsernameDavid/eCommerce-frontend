@@ -85,12 +85,12 @@ export default class ProductItem extends Component {
           </CardContent>
 
           <CardActions disableSpacing>
-            <IconButton aria-label="add to cart">
-              <AddShoppingCart onMouseDown={() => this.addToMyCart(this.props)}/>
+
+            <IconButton aria-label="add to cart" onClick={() => this.addToMyCart(this.props)}>
+              <AddShoppingCart />
+              <div style={{fontSize:14, marginLeft:5}}>ADD TO CART</div>
             </IconButton>
-            <IconButton aria-label="share this product">
-              <ShareIcon />
-            </IconButton>
+
           </CardActions>
           
         </Card>

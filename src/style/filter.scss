@@ -11,8 +11,7 @@
 
   //the buttons are not nested to allow using the same style on the Cart Page
   .btn {
-    background-color: #FFD814;
-    border: 1px solid #FCD200;
+
     border-radius: 8px;
     box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
     box-sizing: border-box;
@@ -32,7 +31,8 @@
     vertical-align: middle;
   }
   .btn:hover {
-    background-color: #F7CA00;
+    background-color: #DA5726;
+    color: whitesmoke;
   }
   
   .btn:focus {

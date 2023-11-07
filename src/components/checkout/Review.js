@@ -50,13 +50,6 @@ export default function Review(props) {
           </Typography>
         </ListItem>
       </List>
-        <Grid item xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom className={classes.title}>
-            Shipping
-          </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
-        </Grid>
     </div>
   );
 }

@@ -60,7 +60,7 @@ export default function PaymentForm(props) {
       <Typography variant="h6" gutterBottom style={{marginTop: 30}}>
         Payment method
       </Typography>
-      <Elements stripe={stripePromise}>
+      <Elements options={{locale: "en"}} stripe={stripePromise}>
         <CheckoutForm handleBack={props.handleBack} handleNext={props.handleNext} myCart={props.myCart} updateMessage={props.updateMessage} message={props.message}/>
       </Elements>
     </React.Fragment>

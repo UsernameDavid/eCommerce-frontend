@@ -64,8 +64,9 @@
 
     .text-hovered {
         display: flex;
-        color: whitesmoke;
-        mix-blend-mode: difference; 
+        color: white;
+        //mix-blend-mode: difference;
+        background-color: #DA5726;
     }
 
     .img-description {
