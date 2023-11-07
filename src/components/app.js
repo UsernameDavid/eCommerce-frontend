@@ -27,12 +27,11 @@ export default class App extends Component {
 
   this.addtocart = this.addtocart.bind(this)
   this.removefromcart = this.removefromcart.bind(this)
-
   this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
   this.handleUnsuccessfulLogin = this.handleUnsuccessfulLogin.bind(this);
   this.handleSuccessfulLogout = this.handleSuccessfulLogout.bind(this);
-
   this.updateUserAndPassword = this.updateUserAndPassword.bind(this);
+  this.emptyCart = this.emptyCart.bind(this);
   
 }
 
@@ -43,19 +42,21 @@ addtocart(item) {
 }
 
 removefromcart(item) {
-
   let cart = this.state.myCart
-
   let index = cart.findIndex((cartItem => cartItem.id === item.id))
   let newCart = this.state.myCart
   newCart.splice(index, 1)
-
   return (
     this.setState({
       myCart: newCart
     })
   )
+}
 
+emptyCart(){
+  this.setState({
+    myCart: []
+  });
 }
 
 handleSuccessfulLogin() {
@@ -94,7 +95,6 @@ updateUserAndPassword(newemail, newpassword) {
   this.setState({
     password: newpassword
   })
-
   auth
   .signInWithEmailAndPassword(newemail, newpassword)
   .then((auth) => 
@@ -103,7 +103,6 @@ updateUserAndPassword(newemail, newpassword) {
   .catch((err) => 
     this.setState({ loggedInStatus: "NOT_LOGGED_IN" }) 
   );
-
 }
 
 componentDidMount(){
@@ -167,7 +166,8 @@ componentDidMount(){
               render={props => (
                 <Checkout
                 {...props}
-                myCart={this.state.myCart} />
+                myCart={this.state.myCart}
+                emptyCart={this.emptyCart}/>
               )}
               />
 

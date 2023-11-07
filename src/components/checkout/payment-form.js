@@ -30,7 +30,7 @@ const elements = useElements();
           id,
           amount: ((props.myCart.reduce((amount, item) => parseFloat(item.price) + parseFloat(amount), 0)).toFixed(2) * 100)
         }, { withCredentials: true });
-        alert(data.message);
+        props.updateMessage(data.message);
         elements.getElement(CardElement).clear();
         props.handleNext();
       }
@@ -61,7 +61,7 @@ export default function PaymentForm(props) {
         Payment method
       </Typography>
       <Elements stripe={stripePromise}>
-        <CheckoutForm handleBack={props.handleBack} handleNext={props.handleNext} myCart={props.myCart}/>
+        <CheckoutForm handleBack={props.handleBack} handleNext={props.handleNext} myCart={props.myCart} updateMessage={props.updateMessage} message={props.message}/>
       </Elements>
     </React.Fragment>
   );

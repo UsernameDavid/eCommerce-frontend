@@ -73,14 +73,14 @@ const useStyles = makeStyles((theme) => ({
 
 const steps = ['Shipping details', 'Review & Payment', 'Confirmation'];
 
-function getStepContent(step, myCart, handleBack, handleNext) {
+function getStepContent(step, myCart, handleBack, handleNext, message, updateMessage, emptyCart) {
   switch (step) {
     case 0:
       return <AddressForm />;
     case 1:
-      return <PaymentForm myCart={myCart} handleBack={handleBack} handleNext={handleNext} />;
+      return <PaymentForm myCart={myCart} handleBack={handleBack} handleNext={handleNext} updateMessage={updateMessage} message={message}/>;
     case 2:
-      return <Confirmation />;
+      return <Confirmation message={message} emptyCart={emptyCart} />;
     default:
       throw new Error('Unknown step');
   }
@@ -89,6 +89,7 @@ function getStepContent(step, myCart, handleBack, handleNext) {
 export default function Checkout(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [message, setMessage] = React.useState("");
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -96,6 +97,10 @@ export default function Checkout(props) {
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
+  };
+
+  const updateMessage = message => {
+    setMessage(message);
   };
 
   return (
@@ -138,7 +143,7 @@ export default function Checkout(props) {
             null
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep, props.myCart, handleBack, handleNext)}
+                {getStepContent(activeStep, props.myCart, handleBack, handleNext, message, updateMessage, props.emptyCart)}
                 <div className={classes.buttons}>
                   {
                     activeStep === 0 ?
@@ -154,9 +159,12 @@ export default function Checkout(props) {
                       :
                       //Step 1 Button's are managed inside PaymentForm component
                       activeStep === 2 ?
-                        <NavLink exact to="/" >
-                          <Button className={classes.button}>
-                            NICE!
+                        <NavLink exact to="/" onClick={props.emptyCart}>
+                          <Button 
+                            variant="contained"
+                            color="primary"
+                            className={classes.button}>
+                            OK
                           </Button>
                         </NavLink>
                         :

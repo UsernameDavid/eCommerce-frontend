@@ -1,9 +1,11 @@
 import React from "react"
 
-const Confirmation = () => {
+const Confirmation = (props) => {
+
+
   return (
     <h1>
-      CONFIRMATION SUCCESS
+      {props.message}
     </h1>
   )
 };
