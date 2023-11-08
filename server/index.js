@@ -6,12 +6,6 @@ const stripe = new Stripe('sk_test_51O9B5oCpzkxzVmTimfk5uXPNlspJbcLDZMJ1knjtnao5
 
 const app = express();
 
-const corsOptions ={
-    origin:'http://localhost:8000', 
-    credentials:true,
-    optionSuccessStatus:200
-}
-
 app.use(cors(corsOptions));
 app.use(express.json())
 

@@ -29,7 +29,7 @@ const elements = useElements();
       console.log("paymentMethod", paymentMethod);
       const { id } = paymentMethod;
       try{
-        const { data } = await axios.post("http://localhost:3001/api/checkout", {
+        const { data } = await axios.post('https://verdant-sunburst-943bd5.netlify.app/api/checkout', {
           id,
           amount: ((props.myCart.reduce((amount, item) => parseFloat(item.price) + parseFloat(amount), 0)).toFixed(2) * 100)
         }, { withCredentials: true });
