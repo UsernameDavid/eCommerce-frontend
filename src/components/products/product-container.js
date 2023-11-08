@@ -26,7 +26,7 @@ export default class ProductContainer extends Component {
 
   getProductItems(filter = null) {
     axios
-      .get('http://127.0.0.1:5000/product/get')
+      .get('https://devcamp-project-0a8492f7241f.herokuapp.com/product/get')
       .then(response => {
         if (filter) {
           this.setState({
