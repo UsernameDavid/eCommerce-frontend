@@ -18,7 +18,7 @@ import { HomeRounded } from '@material-ui/icons';
 import Confirmation from './confirmation';
 
 
-/* Used and adapted a template from Material UI v4 -> https://v4.mui.com/es/getting-started/templates/ */
+/* ADAPTATION of a template from Material UI v4 -> https://v4.mui.com/es/getting-started/templates/ */
 
 
 function Copyright() {

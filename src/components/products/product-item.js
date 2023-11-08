@@ -50,7 +50,7 @@ export default class ProductItem extends Component {
           <CardHeader className='card-header'
             action={
               <Typography 
-              style={{ color: '#DA5726' }}>
+              style={{ color: '#DA5726', fontWeight: 'bold' }}>
               {this.props.price} €
               </Typography>
             }

@@ -1,17 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Typography from '@material-ui/core/Typography';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import { Button } from '@material-ui/core';
+import { Button, CircularProgress } from '@material-ui/core';
 import axios from 'axios';
 
 import Review from './review';
 
-/* Used and adapted a template from Material UI v4 -> https://v4.mui.com/es/getting-started/templates/ */
+/* ADAPTATION of a template from Material UI v4 -> https://v4.mui.com/es/getting-started/templates/ */
 
 const stripePromise = loadStripe("pk_test_51O9B5oCpzkxzVmTiRjmJBlZoFFvWv3QZC5dDjC6ZuZGNiYU6Pup4NnzTWIc3tTMbs7YkbOmBlhPC0QAemldtt3Ak00VDhj1fHL");
 
 const CheckoutForm = (props) => {
+
+const [loading, setLoading] = useState(false);
 
 const stripe = useStripe();
 const elements = useElements();
@@ -22,6 +24,7 @@ const elements = useElements();
       type: "card",
       card: elements.getElement(CardElement),
     });
+    setLoading(true);
     if (!error) {
       console.log("paymentMethod", paymentMethod);
       const { id } = paymentMethod;
@@ -36,17 +39,22 @@ const elements = useElements();
       }
       catch(err){console.log("error from axios", error)}
     }
+    setLoading(false);
   }
 
   return(
     <form onSubmit={handleSubmitPayment}>
       <CardElement />
       <div style={{display: 'flex', justifyContent:'space-between', marginTop:60}}>
-        <Button onClick={props.handleBack} >
+        <Button variant='outlined' onClick={props.handleBack} >
           BACK
         </Button>
         <Button disabled={false} type='submit' variant='contained' color='primary'>
-          PLACE ORDER
+          {
+            loading ?
+             <CircularProgress />
+            : 'PLACE ORDER'
+          }
         </Button>
       </div>
     </form>

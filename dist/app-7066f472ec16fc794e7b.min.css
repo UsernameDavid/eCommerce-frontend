@@ -1,0 +1,259 @@
+.app {
+  font-family: "Amazon Ember", sans-serif;
+}
+
+.products-item-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 1em;
+  justify-items: center;
+  align-items: center;
+}
+.products-item-wrapper .MuiCard-root {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  width: 100%;
+  margin: 25px;
+}
+.products-item-wrapper .MuiCardActions-root {
+  padding: 8px;
+}
+.products-item-wrapper .card-header {
+  margin: 16px 5px 0px 5px;
+}
+.products-item-wrapper .card-cart {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  width: 100%;
+  margin: 25px;
+}
+.products-item-wrapper .MuiCardHeader-root {
+  display: flex;
+  justify-content: space-around;
+}
+.products-item-wrapper .MuiCardHeader-content {
+  display: flex;
+}
+.products-item-wrapper .MuiCard-root:hover {
+  transition: 1s;
+  filter: brightness(95%);
+}
+.products-item-wrapper .card-cart:hover {
+  filter: brightness(100%);
+}
+.products-item-wrapper .MuiCardHeader-action {
+  margin: 0px;
+}
+.products-item-wrapper .MuiCardHeader-root {
+  margin: 0px;
+}
+.products-item-wrapper .MuiCardMedia-root {
+  height: 250px;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.products-item-wrapper .text-hovered {
+  display: flex;
+  color: white;
+  background-color: #DA5726;
+}
+.products-item-wrapper .img-description {
+  padding: 10px;
+}
+.products-item-wrapper .img-text-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: transparent;
+}
+.products-item-wrapper .img-description-wrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  margin: 0px;
+}
+.products-item-wrapper .card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .products-item-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .products-item-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .products-item-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 570px) {
+  .products-item-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+.filter-links-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.filter-links-wrapper .filter-links {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn {
+  border-radius: 8px;
+  box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Amazon Ember", sans-serif;
+  font-size: 1rem;
+  line-height: 29px;
+  padding: 0 10px 0 11px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  -moz-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.btn:hover {
+  background-color: #DA5726;
+  color: whitesmoke;
+}
+
+.btn:focus {
+  border-color: #008296;
+  box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
+  outline: 0;
+}
+
+@media only screen and (max-width: 800px) {
+  .btn {
+    font-size: 0.9rem;
+    padding: 3px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .btn {
+    font-size: 0.8rem;
+    padding: 2px;
+  }
+}
+.nav-wrapper {
+  color: #DA5726;
+  display: flex;
+  text-align: center;
+  align-content: center;
+  justify-content: space-between;
+  padding: 30px;
+  font-family: "Amazon Ember", sans-serif;
+}
+.nav-wrapper .left-side {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+.nav-wrapper .left-side img {
+  height: 110px;
+}
+.nav-wrapper .right-side {
+  display: flex;
+  align-items: center;
+}
+.nav-wrapper .right-side .MuiButton-label {
+  display: flex;
+  flex-direction: column;
+}
+.nav-wrapper .right-side .MuiButton-label .MuiButton-endIcon {
+  margin: 0px;
+}
+.nav-wrapper .right-side .MuiButton-label .MuiSvgIcon-root {
+  font-size: 1.8rem;
+}
+.nav-wrapper .right-side .MuiIconButton-root {
+  color: #DA5726;
+  margin-left: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.5s ease-in-out;
+  font-size: 1.6rem;
+}
+.nav-wrapper .right-side .MuiIconButton-root:hover {
+  color: #7f2200;
+}
+
+.cart-page-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  grid-gap: 10px;
+  justify-items: center;
+  color: #7f2200;
+  font-weight: bold;
+}
+.cart-page-wrapper .cart-title {
+  grid-column: 1/4;
+  grid-row: 2;
+  height: 100%;
+  font-size: 1.9rem;
+  padding-bottom: 30px;
+  word-spacing: 0.15rem;
+}
+.cart-page-wrapper .lottie {
+  grid-column: 1/4;
+  grid-row: 3;
+}
+.cart-page-wrapper .cart-products {
+  grid-column: 1/3;
+  grid-row: 3;
+}
+.cart-page-wrapper .cart-total {
+  grid-column: 3/4;
+  grid-row: 3;
+  font-size: 1.6rem;
+}
+.cart-page-wrapper .cart-checkout {
+  width: 100%;
+  height: 40px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.MuiToolbar-root {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 20px 0px 20px;
+  color: #DA5726;
+}
+.MuiToolbar-root .MuiSvgIcon-root {
+  color: #DA5726;
+}
+/*# sourceMappingURL=app-856b8d669290b1378724.map*/

@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 
-/* Used and adapted a template from Material UI v4 -> https://v4.mui.com/es/getting-started/templates/ */
+/* ADAPTATION of a template from Material UI v4 -> https://v4.mui.com/es/getting-started/templates/ */
 
 const addresses = ['1 Material-UI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 const payments = [

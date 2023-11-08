@@ -68,7 +68,7 @@ export default class ProductCartItem extends Component {
         <CardActions className='card-actions' disableSpacing>
           {
             <Typography 
-            style={{ color: '#DA5726' }}>
+            style={{ color: '#DA5726', fontWeight: 'bold' }}>
             {this.props.price} €
             </Typography>
           }
